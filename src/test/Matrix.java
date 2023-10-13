@@ -1,4 +1,4 @@
-package lesson9;
+package test;
 
 public class Matrix implements IMatrix {
 
