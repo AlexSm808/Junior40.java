@@ -36,12 +36,13 @@ public class Matrix implements IMatrix {
     }
 
     @Override
-    public void setValueAt(int rowIndex, int colIndex, double value) throws IndexOutOfBoundsException {
+    public double setValueAt(int rowIndex, int colIndex, double value) throws IndexOutOfBoundsException {
         if (rowIndex < 0 || rowIndex > getRows() || colIndex < 0 || colIndex > getColumns()) {
             throw new IndexOutOfBoundsException("Индекс строки не может быть меньше нуля или больше (или равно) количества строк матрицы или индекс столбца меньше нуля\n" +
                     "или больше (или равно) количества столбцов матрицы");
         }
         nums[rowIndex][colIndex] = value;
+        return value;
     }
 
     @Override

@@ -63,13 +63,13 @@ public class Main1 {
         IMatrix resultMul = c.mul(d); // умножение матриц
         resultMul.printToConsole();
 
-        IMatrix resultMulValue = a.mul(2); // умножает матрицу на число
+        IMatrix resultMulValue = a.mul(0); // умножает матрицу на число
         resultMulValue.printToConsole();
 
         IMatrix transponse = c.transpose(); // транспонирует матрицу
         transponse.printToConsole();
 
-        lul.fillMatrix(-2);   // заполняет матрицу
+        lul.fillMatrix(0);   // заполняет матрицу
         lul.printToConsole();      // выводит на консоль
 
         System.out.println(f.determinant()); // вычисляет детрминант
