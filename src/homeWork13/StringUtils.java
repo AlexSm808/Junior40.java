@@ -1,4 +1,4 @@
-package lesson13dz2;
+package homeWork13;
 
 /**
  * Утилитный класс для работы со строками
