@@ -28,14 +28,18 @@ public class Matrix implements IMatrix {
 
     @Override
     public double getValueAt(int rowIndex, int colIndex) throws IndexOutOfBoundsException {
-        if (rowIndex < 0 || rowIndex > getRows() || colIndex < 0 || colIndex > getColumns()) return -1;
+        if (rowIndex < 0 || rowIndex > getRows() || colIndex < 0 || colIndex > getColumns()) {
+            throw new IndexOutOfBoundsException("Индекс строки не может быть меньше нуля или больше (или равно) количества строк матрицы или индекс столбца меньше нуля\n" +
+                    "или больше (или равно) количества столбцов матрицы");
+        }
         return nums[rowIndex][colIndex];
     }
 
     @Override
     public void setValueAt(int rowIndex, int colIndex, double value) throws IndexOutOfBoundsException {
         if (rowIndex < 0 || rowIndex > getRows() || colIndex < 0 || colIndex > getColumns()) {
-            return;
+            throw new IndexOutOfBoundsException("Индекс строки не может быть меньше нуля или больше (или равно) количества строк матрицы или индекс столбца меньше нуля\n" +
+                    "или больше (или равно) количества столбцов матрицы");
         }
         nums[rowIndex][colIndex] = value;
     }
@@ -45,8 +49,10 @@ public class Matrix implements IMatrix {
         // otherMatrix = b
         // this = a
         if (this.getRows() != otherMatrix.getRows() || this.getColumns() != otherMatrix.getColumns()) {
-            System.out.println("Матрицы не равны!!!!");
-            return null;
+            throw new IllegalArgumentException("Текущая матрица и второй аргумент имеют несовместимое количество строк и (или) столбцов");
+        }
+        if (otherMatrix == null) {
+            throw new NullPointerException("Второй аргумент null!!!");
         }
         Matrix result = new Matrix(this.getRows(), this.getColumns());
         for (int i = 0; i < result.getRows(); i++) {
@@ -60,9 +66,12 @@ public class Matrix implements IMatrix {
     @Override
     public IMatrix sub(IMatrix otherMatrix) throws IllegalArgumentException, NullPointerException {
         if (this.getRows() != otherMatrix.getRows() || this.getColumns() != otherMatrix.getColumns()) {
-            System.out.println("Матрицы не равны!!!!");
-            return null;
+            throw new IllegalArgumentException("Текущая матрица и второй аргумент имеют несовместимое количество строк и (или) столбцов");
         }
+        if (otherMatrix == null) {
+            throw new NullPointerException("Второй аргумент null!!!");
+        }
+
         Matrix result = new Matrix(this.getRows(), this.getColumns());
         for (int i = 0; i < result.getRows(); i++) {
             for (int j = 0; j < result.getColumns(); j++) {
@@ -75,8 +84,10 @@ public class Matrix implements IMatrix {
     @Override
     public IMatrix mul(IMatrix otherMatrix) throws IllegalArgumentException, NullPointerException {
         if (this.getColumns() != otherMatrix.getRows()) {
-            System.out.println("Матрицы не совместимы!!!!");
-            return null;
+            throw new IllegalArgumentException("Текущая матрица и второй аргумент имеют несовместимое количество строк и (или) столбцов");
+        }
+        if (otherMatrix == null) {
+            throw new NullPointerException("Второй аргумент null!!!");
         }
         double sum = 0;
         Matrix result = new Matrix(this.getRows(), otherMatrix.getColumns());
