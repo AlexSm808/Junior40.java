@@ -1,6 +1,7 @@
 package test;
 
 import junit.framework.TestCase;
+import org.junit.Test;
 
 import java.util.Arrays;
 
@@ -24,7 +25,7 @@ public class MatrixTestCase extends TestCase {
         assertEquals(resultFact, resultWant);
     }
 
-    public void testGetRows() {
+    public void testGetRows1() {
         double[][] forTestGetRows = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
         Matrix matrix = new Matrix(forTestGetRows);
         int resultFact = matrix.getRows();
@@ -32,7 +33,16 @@ public class MatrixTestCase extends TestCase {
         assertEquals(resultFact, resultWant);
     }
 
-    public void testGetColumns() {
+    public void testGetRows2() {
+        double[][] forTestGetRows = new double[5][6];
+        Matrix matrix = new Matrix(forTestGetRows);
+        int resultFact = matrix.getRows();
+        int resultWant = 5;
+        assertEquals(resultFact, resultWant);
+    }
+
+
+    public void testGetColumns1() {
         double[][] forTestGetColums = {{1, 2, 3, 1}, {4, 5, 6, 3}, {7, 8, 9, 5}};
         Matrix matrix = new Matrix(forTestGetColums);
         int resultFact = matrix.getColumns();
@@ -40,7 +50,15 @@ public class MatrixTestCase extends TestCase {
         assertEquals(resultFact, resultWant);
     }
 
-    public void testGetValueAt() {
+    public void testGetColumns2() {
+        double[][] forTestGetColums = new double[3][2];
+        Matrix matrix = new Matrix(forTestGetColums);
+        int resultFact = matrix.getColumns();
+        int resultWant = 2;
+        assertEquals(resultFact, resultWant);
+    }
+
+    public void testGetValueAt1() {
         double[][] forTestGetValueAt = {{1, 2, 3, 1}, {4, 5, 6, 3}, {7, 8, 9, 5}};
         Matrix matrix = new Matrix(forTestGetValueAt);
         double resultFact = matrix.getValueAt(2, 2);
@@ -48,12 +66,54 @@ public class MatrixTestCase extends TestCase {
         assertEquals(resultFact, resultWant);
     }
 
-    public void testSetValueAt() {
+    public void testGetValueAt2() {
+        double[][] forTestGetValueAt = new double[3][3];
+        Matrix matrix = new Matrix(forTestGetValueAt);
+        double resultFact = matrix.getValueAt(1, 1);
+        double resultWant = 0.0;
+        assertEquals(resultFact, resultWant);
+    }
+
+    public void testGetValueAtThrowsException() {
+        boolean exceptionTrown = false;
+        try {
+            double[][] forTestGetValueAt = new double[3][3];
+            Matrix matrix = new Matrix(forTestGetValueAt);
+            double resultFact = matrix.getValueAt(3, 1);
+            double resultWant = 0.0;
+        } catch (IndexOutOfBoundsException iO) {
+            exceptionTrown = true;
+        }
+        assertTrue(exceptionTrown);
+    }
+
+    public void testSetValueAt1() {
         double[][] forTestSetValueAt = new double[4][4];
         Matrix matrix = new Matrix(forTestSetValueAt);
         double resultFact = matrix.setValueAt(1, 3, 4);
         double resultWant = 4.0;
         assertEquals(resultFact, resultWant);
+    }
+
+    public void testSetValueAt2() {
+        double[][] forTestSetValueAt = {{1, 2, 3, 1}, {4, 5, 6, 3}, {7, 8, 9, 5}};
+        Matrix matrix = new Matrix(forTestSetValueAt);
+        double resultFact = matrix.setValueAt(1, 3, 3);
+        double resultWant = 3.0;
+        assertEquals(resultFact, resultWant);
+    }
+
+    public void testSetValueAtThrowsException() {
+        boolean exceptionTrown = false;
+        try {
+            double[][] forTestSetValueAt = new double[3][3];
+            Matrix matrix = new Matrix(forTestSetValueAt);
+            double resultFact = matrix.setValueAt(4,2,4);
+            double resultWant = 4.0;
+        } catch (IndexOutOfBoundsException iO) {
+            exceptionTrown = true;
+        }
+        assertTrue(exceptionTrown);
     }
 
     public void testAddMatrix1() {
@@ -89,6 +149,35 @@ public class MatrixTestCase extends TestCase {
         assertTrue(Arrays.deepEquals(resultFact, resultWant));
     }
 
+    public void testAddMatrixThrowsException1() {
+        boolean exceptionTrown = false;
+        try {
+            double[][] forTestAddMatrixT = new double[3][4];
+            double[][] forTestAddMatrixO = new double[3][3];
+            Matrix matrixT = new Matrix(forTestAddMatrixT);
+            Matrix matrixO = new Matrix(forTestAddMatrixO);
+            IMatrix resFact = matrixT.add(matrixO);
+        } catch (IllegalArgumentException i) {
+            exceptionTrown = true;
+        }
+        assertTrue(exceptionTrown);
+    }
+
+
+    public void testAddMatrixThrowsException2() {
+        boolean exceptionTrown = false;
+        try {
+            double[][] forTestAddMatrixT = new double[3][4];
+            double[][] forTestAddMatrixO = null;
+            Matrix matrixT = new Matrix(forTestAddMatrixT);
+            Matrix matrixO = new Matrix(forTestAddMatrixO);
+            IMatrix resFact = matrixT.add(matrixO);
+        } catch (NullPointerException n) {
+            exceptionTrown = true;
+        }
+        assertTrue(exceptionTrown);
+    }
+
     public void testSubMatrix1() {
         double[][] forTestSubMatrixT = {{1, 2, 3, 1}, {4, 5, 6, 3}, {7, 8, 9, 5}};
         double[][] forTestSubMatrixO = {{1, 2, 3, 3}, {4, 5, 6, 6}, {7, 8, 9, 9}};
@@ -119,6 +208,34 @@ public class MatrixTestCase extends TestCase {
         }
         double[][] resultWant = {{0, 0, 0, 2}, {0, 0, 0, 3}, {0, 0, 0, 4}};
         assertTrue(Arrays.deepEquals(resultFact, resultWant));
+    }
+
+    public void testSubMatrixThrowsException1() {
+        boolean exceptionTrown = false;
+        try {
+            double[][] forTestSubMatrixT = new double[4][5];
+            double[][] forTestSubMatrixO = new double[3][5];
+            Matrix matrixT = new Matrix(forTestSubMatrixT);
+            Matrix matrixO = new Matrix(forTestSubMatrixO);
+            IMatrix resFact = matrixT.sub(matrixO);
+        } catch (IllegalArgumentException i) {
+            exceptionTrown = true;
+        }
+        assertTrue(exceptionTrown);
+    }
+
+    public void testSubMatrixThrowsException2() {
+        boolean exceptionTrown = false;
+        try {
+            double[][] forTestSubMatrixT = new double[4][5];
+            double[][] forTestSubMatrixO = null;
+            Matrix matrixT = new Matrix(forTestSubMatrixT);
+            Matrix matrixO = new Matrix(forTestSubMatrixO);
+            IMatrix resFact = matrixT.sub(matrixO);
+        } catch (NullPointerException n) {
+            exceptionTrown = true;
+        }
+        assertTrue(exceptionTrown);
     }
 
     public void testMulMatrix1() {
@@ -167,6 +284,34 @@ public class MatrixTestCase extends TestCase {
         }
         double[][] resultWant = {{0, 0, 0}, {0, 0, 0}, {0, 0, 0}};
         assertTrue(Arrays.deepEquals(resultFact, resultWant));
+    }
+
+    public void testMulMatrixThrowsException1() {
+        boolean exceptionTrown = false;
+        try {
+            double[][] forTestMulMatrixT = new double[4][5];
+            double[][] forTestMulMatrixO = new double[4][4];
+            Matrix matrixT = new Matrix(forTestMulMatrixT);
+            Matrix matrixO = new Matrix(forTestMulMatrixO);
+            IMatrix resFact = matrixT.mul(matrixO);
+        } catch (IllegalArgumentException i) {
+            exceptionTrown = true;
+        }
+        assertTrue(exceptionTrown);
+    }
+
+    public void testMulMatrixThrowsException2() {
+        boolean exceptionTrown = false;
+        try {
+            double[][] forTestMulMatrixT = new double[4][5];
+            double[][] forTestMulMatrixO = null;
+            Matrix matrixT = new Matrix(forTestMulMatrixT);
+            Matrix matrixO = new Matrix(forTestMulMatrixO);
+            IMatrix resFact = matrixT.mul(matrixO);
+        } catch (NullPointerException n) {
+            exceptionTrown = true;
+        }
+        assertTrue(exceptionTrown);
     }
 
     public void testMulonNumMatrix1() {
