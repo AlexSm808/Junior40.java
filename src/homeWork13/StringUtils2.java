@@ -2,6 +2,8 @@ package homeWork13;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class StringUtils2 implements StringUtils {
     @Override
@@ -45,7 +47,25 @@ public class StringUtils2 implements StringUtils {
 
     @Override
     public double[] findNumbers(String text) throws CustomException {
-        return new double[0];
+
+        Pattern decimalNumPattern = Pattern.compile("-?\\d+(\\.\\d+)?");
+        Matcher matcher = decimalNumPattern.matcher(text);
+
+        List<String> decimalNumList = new ArrayList<>();
+        while (matcher.find()) {
+            decimalNumList.add(matcher.group());
+        }
+
+        int d = decimalNumList.size();
+        double[] arr = new double[d];
+        for (int i = 0; i < d; i++) {
+            arr[i] = Double.parseDouble(decimalNumList.get(i));
+        }
+        if (decimalNumList.isEmpty()) {
+            throw new CustomException("Чисел не обнаружено");
+        }
+        return arr;
+
     }
 
     public boolean isNumber(String str) {
@@ -57,3 +77,4 @@ public class StringUtils2 implements StringUtils {
         return true;
     }
 }
+
