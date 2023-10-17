@@ -1,6 +1,6 @@
 package test;
 
-import junit.framework.TestCase;
+import java.util.Arrays;
 
 public class Matrix implements IMatrix {
 
@@ -30,16 +30,21 @@ public class Matrix implements IMatrix {
 
     @Override
     public double getValueAt(int rowIndex, int colIndex) throws IndexOutOfBoundsException {
-        if (rowIndex < 0 || rowIndex > getRows() || colIndex < 0 || colIndex > getColumns()) return -1;
+        if (rowIndex < 0 || rowIndex > getRows() || colIndex < 0 || colIndex > getColumns()) {
+            throw new IndexOutOfBoundsException("Индекс строки не может быть меньше нуля или больше (или равно) количества строк матрицы или индекс столбца меньше нуля\n" +
+                    "или больше (или равно) количества столбцов матрицы");
+        }
         return nums[rowIndex][colIndex];
     }
 
     @Override
-    public void setValueAt(int rowIndex, int colIndex, double value) throws IndexOutOfBoundsException {
+    public double setValueAt(int rowIndex, int colIndex, double value) throws IndexOutOfBoundsException {
         if (rowIndex < 0 || rowIndex > getRows() || colIndex < 0 || colIndex > getColumns()) {
-            return;
+            throw new IndexOutOfBoundsException("Индекс строки не может быть меньше нуля или больше (или равно) количества строк матрицы или индекс столбца меньше нуля\n" +
+                    "или больше (или равно) количества столбцов матрицы");
         }
         nums[rowIndex][colIndex] = value;
+        return value;
     }
 
     @Override
@@ -47,8 +52,10 @@ public class Matrix implements IMatrix {
         // otherMatrix = b
         // this = a
         if (this.getRows() != otherMatrix.getRows() || this.getColumns() != otherMatrix.getColumns()) {
-            System.out.println("Матрицы не равны!!!!");
-            return null;
+            throw new IllegalArgumentException("Текущая матрица и второй аргумент имеют несовместимое количество строк и (или) столбцов");
+        }
+        if (otherMatrix == null) {
+            throw new NullPointerException("Второй аргумент null!!!");
         }
         Matrix result = new Matrix(this.getRows(), this.getColumns());
         for (int i = 0; i < result.getRows(); i++) {
@@ -62,9 +69,12 @@ public class Matrix implements IMatrix {
     @Override
     public IMatrix sub(IMatrix otherMatrix) throws IllegalArgumentException, NullPointerException {
         if (this.getRows() != otherMatrix.getRows() || this.getColumns() != otherMatrix.getColumns()) {
-            System.out.println("Матрицы не равны!!!!");
-            return null;
+            throw new IllegalArgumentException("Текущая матрица и второй аргумент имеют несовместимое количество строк и (или) столбцов");
         }
+        if (otherMatrix == null) {
+            throw new NullPointerException("Второй аргумент null!!!");
+        }
+
         Matrix result = new Matrix(this.getRows(), this.getColumns());
         for (int i = 0; i < result.getRows(); i++) {
             for (int j = 0; j < result.getColumns(); j++) {
@@ -77,8 +87,10 @@ public class Matrix implements IMatrix {
     @Override
     public IMatrix mul(IMatrix otherMatrix) throws IllegalArgumentException, NullPointerException {
         if (this.getColumns() != otherMatrix.getRows()) {
-            System.out.println("Матрицы не совместимы!!!!");
-            return null;
+            throw new IllegalArgumentException("Текущая матрица и второй аргумент имеют несовместимое количество строк и (или) столбцов");
+        }
+        if (otherMatrix == null) {
+            throw new NullPointerException("Второй аргумент null!!!");
         }
         double sum = 0;
         Matrix result = new Matrix(this.getRows(), otherMatrix.getColumns());
@@ -221,23 +233,24 @@ public class Matrix implements IMatrix {
         System.out.println();
     }
 
-    public static class MatrixTestCase extends TestCase {
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Matrix matrix = (Matrix) o;
+        return Arrays.equals(nums, matrix.nums);
+    }
 
-        public void testDeterminantTest1() {
+    @Override
+    public int hashCode() {
+        return Arrays.hashCode(nums);
+    }
 
-            double[][] forMatrix = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
-            Matrix matrix = new Matrix(forMatrix);
-            double resultFact = matrix.determinant();
-            double resultWant = 0.0;
-            assertEquals(resultFact, resultWant);
-        }
-        public void testDeterminantTest2() {
-
-            double[][] forMatrix = {{-1, -2, -3}, {-4, -5, -6}, {-7, -8, -9}};
-            Matrix matrix = new Matrix(forMatrix);
-            double resultFact = matrix.determinant();
-            double resultWant = 0.0;
-            assertEquals(resultFact, resultWant);
-        }
+    @Override
+    public String toString() {
+        return "Matrix{" +
+                "nums=" + Arrays.toString(nums) +
+                '}';
     }
 }
+
