@@ -5,6 +5,8 @@ import org.junit.Test;
 
 import java.util.Arrays;
 
+import static org.junit.Assert.assertThrows;
+
 public class MatrixTestCase extends TestCase {
 
     public void testDeterminantTest1() {
@@ -430,5 +432,24 @@ public class MatrixTestCase extends TestCase {
             }
         }
         assertTrue(Arrays.deepEquals(resultFact, resultWant));
+    }
+
+    @Test (expected = IndexOutOfBoundsException.class)
+    public void testSetValueAtThrowsException2() {
+        double[][] forTestSetValueAt = new double[3][3];
+        Matrix matrix = new Matrix(forTestSetValueAt);
+        double resultFact = matrix.setValueAt(4, 2, 4);
+    }
+
+    public void testAddMatrix4() {
+        double[][] forTestAddMatrixT = {{1, 2, 3, 1}, {4, 5, 6, 3}, {7, 8, 9, 5}};
+        double[][] forTestAddMatrixO = {{1, 2, 3, 3}, {4, 5, 6, 6}, {7, 8, 9, 9}};
+        Matrix matrixT = new Matrix(forTestAddMatrixT);
+        Matrix matrixO = new Matrix(forTestAddMatrixO);
+        IMatrix resultFact = matrixT.add(matrixO);
+        double[][] arrayWant = {{2, 4, 6, 4}, {8, 10, 12, 9}, {14, 16, 18, 14}};
+        Matrix matrixWant = new Matrix(arrayWant);
+        IMatrix resultWant = matrixWant;
+        assertEquals(resultFact, resultWant);
     }
 }

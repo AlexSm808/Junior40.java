@@ -1,5 +1,7 @@
 package test;
 
+import java.util.Arrays;
+
 public class Matrix implements IMatrix {
 
     private double[][] nums;
@@ -230,4 +232,25 @@ public class Matrix implements IMatrix {
         }
         System.out.println();
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Matrix matrix = (Matrix) o;
+        return Arrays.equals(nums, matrix.nums);
+    }
+
+    @Override
+    public int hashCode() {
+        return Arrays.hashCode(nums);
+    }
+
+    @Override
+    public String toString() {
+        return "Matrix{" +
+                "nums=" + Arrays.toString(nums) +
+                '}';
+    }
 }
+
