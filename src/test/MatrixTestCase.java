@@ -2,7 +2,6 @@ package test;
 
 import junit.framework.TestCase;
 import org.junit.Test;
-
 import java.util.Arrays;
 
 import static org.junit.Assert.assertThrows;
@@ -123,16 +122,11 @@ public class MatrixTestCase extends TestCase {
         double[][] forTestAddMatrixO = {{1, 2, 3, 3}, {4, 5, 6, 6}, {7, 8, 9, 9}};
         Matrix matrixT = new Matrix(forTestAddMatrixT);
         Matrix matrixO = new Matrix(forTestAddMatrixO);
-        IMatrix resFact = matrixT.add(matrixO);
-        double[][] resultFact = new double[resFact.getRows()][resFact.getColumns()];
-        for (int i = 0; i < resFact.getRows(); i++) {
-            for (int j = 0; j < resFact.getColumns(); j++) {
-                resultFact[i][j] = resFact.getValueAt(i, j);
-            }
-        }
-
-        double[][] resultWant = {{2, 4, 6, 4}, {8, 10, 12, 9}, {14, 16, 18, 14}};
-        assertTrue(Arrays.deepEquals(resultFact, resultWant));
+        IMatrix resultFact = matrixT.add(matrixO);
+        double[][] arrayWant = {{2, 4, 6, 4}, {8, 10, 12, 9}, {14, 16, 18, 14}};
+        Matrix matrixWant = new Matrix(arrayWant);
+        IMatrix resultWant = matrixWant;
+        assertEquals(resultFact, resultWant);
     }
 
     public void testAddMatrix2() {
@@ -140,15 +134,11 @@ public class MatrixTestCase extends TestCase {
         double[][] forTestAddMatrixO = {{-1, -2, -3, -3}, {-4, -5, -6, -6}, {-7, -8, -9, -9}};
         Matrix matrixT = new Matrix(forTestAddMatrixT);
         Matrix matrixO = new Matrix(forTestAddMatrixO);
-        IMatrix resFact = matrixT.add(matrixO);
-        double[][] resultFact = new double[resFact.getRows()][resFact.getColumns()];
-        for (int i = 0; i < resFact.getRows(); i++) {
-            for (int j = 0; j < resFact.getColumns(); j++) {
-                resultFact[i][j] = resFact.getValueAt(i, j);
-            }
-        }
-        double[][] resultWant = {{-2, -4, -6, -4}, {-8, -10, -12, -9}, {-14, -16, -18, -14}};
-        assertTrue(Arrays.deepEquals(resultFact, resultWant));
+        IMatrix resultFact = matrixT.add(matrixO);
+        double[][] arrayWant = {{-2, -4, -6, -4}, {-8, -10, -12, -9}, {-14, -16, -18, -14}};
+        Matrix matrixWant = new Matrix(arrayWant);
+        IMatrix resultWant = matrixWant;
+        assertEquals(resultFact, resultWant);
     }
 
     public void testAddMatrix3() {
@@ -156,15 +146,11 @@ public class MatrixTestCase extends TestCase {
         double[][] forTestAddMatrixO = new double[5][5];
         Matrix matrixT = new Matrix(forTestAddMatrixT);
         Matrix matrixO = new Matrix(forTestAddMatrixO);
-        IMatrix resFact = matrixT.add(matrixO);
-        double[][] resultFact = new double[resFact.getRows()][resFact.getColumns()];
-        for (int i = 0; i < resFact.getRows(); i++) {
-            for (int j = 0; j < resFact.getColumns(); j++) {
-                resultFact[i][j] = resFact.getValueAt(i, j);
-            }
-        }
-        double[][] resultWant = {{0, 0, 0, 0, 0}, {0, 0, 0, 0, 0}, {0, 0, 0, 0, 0}, {0, 0, 0, 0, 0}, {0, 0, 0, 0, 0}};
-        assertTrue(Arrays.deepEquals(resultFact, resultWant));
+        IMatrix resultFact = matrixT.add(matrixO);
+        double[][] arrayWant = {{0, 0, 0, 0, 0}, {0, 0, 0, 0, 0}, {0, 0, 0, 0, 0}, {0, 0, 0, 0, 0}, {0, 0, 0, 0, 0}};
+        Matrix matrixWant = new Matrix(arrayWant);
+        IMatrix resultWant = matrixWant;
+        assertEquals(resultFact, resultWant);
     }
 
     public void testAddMatrixThrowsException1() {
@@ -201,15 +187,12 @@ public class MatrixTestCase extends TestCase {
         double[][] forTestSubMatrixO = {{1, 2, 3, 3}, {4, 5, 6, 6}, {7, 8, 9, 9}};
         Matrix matrixT = new Matrix(forTestSubMatrixT);
         Matrix matrixO = new Matrix(forTestSubMatrixO);
-        IMatrix resFact = matrixT.sub(matrixO);
-        double[][] resultFact = new double[resFact.getRows()][resFact.getColumns()];
-        for (int i = 0; i < resFact.getRows(); i++) {
-            for (int j = 0; j < resFact.getColumns(); j++) {
-                resultFact[i][j] = resFact.getValueAt(i, j);
-            }
-        }
-        double[][] resultWant = {{0, 0, 0, -2}, {0, 0, 0, -3}, {0, 0, 0, -4}};
-        assertTrue(Arrays.deepEquals(resultFact, resultWant));
+        IMatrix resultFact = matrixT.sub(matrixO);
+        double[][] arrayWant = {{0, 0, 0, -2}, {0, 0, 0, -3}, {0, 0, 0, -4}};
+        Matrix matrixWant = new Matrix(arrayWant);
+        IMatrix resultWant = matrixWant;
+        assertEquals(resultFact, resultWant);
+
     }
 
     public void testSubMatrix2() {
@@ -217,15 +200,11 @@ public class MatrixTestCase extends TestCase {
         double[][] forTestSubMatrixO = {{-1, -2, -3, -3}, {-4, -5, -6, -6}, {-7, -8, -9, -9}};
         Matrix matrixT = new Matrix(forTestSubMatrixT);
         Matrix matrixO = new Matrix(forTestSubMatrixO);
-        IMatrix resFact = matrixT.sub(matrixO);
-        double[][] resultFact = new double[resFact.getRows()][resFact.getColumns()];
-        for (int i = 0; i < resFact.getRows(); i++) {
-            for (int j = 0; j < resFact.getColumns(); j++) {
-                resultFact[i][j] = resFact.getValueAt(i, j);
-            }
-        }
-        double[][] resultWant = {{0, 0, 0, 2}, {0, 0, 0, 3}, {0, 0, 0, 4}};
-        assertTrue(Arrays.deepEquals(resultFact, resultWant));
+        IMatrix resultFact = matrixT.sub(matrixO);
+        double[][] arrayWant = {{0, 0, 0, 2}, {0, 0, 0, 3}, {0, 0, 0, 4}};
+        Matrix matrixWant = new Matrix(arrayWant);
+        IMatrix resultWant = matrixWant;
+        assertEquals(resultFact, resultWant);
     }
 
     public void testSubMatrix3() {
@@ -233,15 +212,11 @@ public class MatrixTestCase extends TestCase {
         double[][] forTestSubMatrixO = new double[3][3];
         Matrix matrixT = new Matrix(forTestSubMatrixT);
         Matrix matrixO = new Matrix(forTestSubMatrixO);
-        IMatrix resFact = matrixT.sub(matrixO);
-        double[][] resultFact = new double[resFact.getRows()][resFact.getColumns()];
-        for (int i = 0; i < resFact.getRows(); i++) {
-            for (int j = 0; j < resFact.getColumns(); j++) {
-                resultFact[i][j] = resFact.getValueAt(i, j);
-            }
-        }
-        double[][] resultWant = {{0, 0, 0}, {0, 0, 0}, {0, 0, 0}};
-        assertTrue(Arrays.deepEquals(resultFact, resultWant));
+        IMatrix resultFact = matrixT.sub(matrixO);
+        double[][] arrayWant = {{0, 0, 0}, {0, 0, 0}, {0, 0, 0}};
+        Matrix matrixWant = new Matrix(arrayWant);
+        IMatrix resultWant = matrixWant;
+        assertEquals(resultFact, resultWant);
     }
 
     public void testSubMatrixThrowsException1() {
@@ -277,15 +252,11 @@ public class MatrixTestCase extends TestCase {
         double[][] forTestMulMatrixO = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}, {4, 5, 7}};
         Matrix matrixT = new Matrix(forTestMulMatrixT);
         Matrix matrixO = new Matrix(forTestMulMatrixO);
-        IMatrix resFact = matrixT.mul(matrixO);
-        double[][] resultFact = new double[resFact.getRows()][resFact.getColumns()];
-        for (int i = 0; i < resFact.getRows(); i++) {
-            for (int j = 0; j < resFact.getColumns(); j++) {
-                resultFact[i][j] = resFact.getValueAt(i, j);
-            }
-        }
-        double[][] resultWant = {{34, 41, 49}, {78, 96, 117}, {122, 151, 185}};
-        assertTrue(Arrays.deepEquals(resultFact, resultWant));
+        IMatrix resultFact = matrixT.mul(matrixO);
+        double[][] arrayWant = {{34, 41, 49}, {78, 96, 117}, {122, 151, 185}};
+        Matrix matrixWant = new Matrix(arrayWant);
+        IMatrix resultWant = matrixWant;
+        assertEquals(resultFact, resultWant);
     }
 
     public void testMulMatrix2() {
@@ -293,15 +264,11 @@ public class MatrixTestCase extends TestCase {
         double[][] forTestMulMatrixO = {{-1, -2, -3}, {-4, -5, -6}, {-7, -8, -9}, {-4, -5, -7}};
         Matrix matrixT = new Matrix(forTestMulMatrixT);
         Matrix matrixO = new Matrix(forTestMulMatrixO);
-        IMatrix resFact = matrixT.mul(matrixO);
-        double[][] resultFact = new double[resFact.getRows()][resFact.getColumns()];
-        for (int i = 0; i < resFact.getRows(); i++) {
-            for (int j = 0; j < resFact.getColumns(); j++) {
-                resultFact[i][j] = resFact.getValueAt(i, j);
-            }
-        }
-        double[][] resultWant = {{34, 41, 49}, {78, 96, 117}, {122, 151, 185}};
-        assertTrue(Arrays.deepEquals(resultFact, resultWant));
+        IMatrix resultFact = matrixT.mul(matrixO);
+        double[][] arrayWant = {{34, 41, 49}, {78, 96, 117}, {122, 151, 185}};
+        Matrix matrixWant = new Matrix(arrayWant);
+        IMatrix resultWant = matrixWant;
+        assertEquals(resultFact, resultWant);
     }
 
     public void testMulMatrix3() {
@@ -309,15 +276,11 @@ public class MatrixTestCase extends TestCase {
         double[][] forTestMulMatrixO = {{0, 0, 0}, {0, 0, 0}, {0, 0, 0}, {0, 0, 0}};
         Matrix matrixT = new Matrix(forTestMulMatrixT);
         Matrix matrixO = new Matrix(forTestMulMatrixO);
-        IMatrix resFact = matrixT.mul(matrixO);
-        double[][] resultFact = new double[resFact.getRows()][resFact.getColumns()];
-        for (int i = 0; i < resFact.getRows(); i++) {
-            for (int j = 0; j < resFact.getColumns(); j++) {
-                resultFact[i][j] = resFact.getValueAt(i, j);
-            }
-        }
-        double[][] resultWant = {{0, 0, 0}, {0, 0, 0}, {0, 0, 0}};
-        assertTrue(Arrays.deepEquals(resultFact, resultWant));
+        IMatrix resultFact = matrixT.mul(matrixO);
+        double[][] arrayWant = {{0, 0, 0}, {0, 0, 0}, {0, 0, 0}};
+        Matrix matrixWant = new Matrix(arrayWant);
+        IMatrix resultWant = matrixWant;
+        assertEquals(resultFact, resultWant);
     }
 
     public void testMulMatrix4() {
@@ -325,15 +288,11 @@ public class MatrixTestCase extends TestCase {
         double[][] forTestMulMatrixO = new double[4][3];
         Matrix matrixT = new Matrix(forTestMulMatrixT);
         Matrix matrixO = new Matrix(forTestMulMatrixO);
-        IMatrix resFact = matrixT.mul(matrixO);
-        double[][] resultFact = new double[resFact.getRows()][resFact.getColumns()];
-        for (int i = 0; i < resFact.getRows(); i++) {
-            for (int j = 0; j < resFact.getColumns(); j++) {
-                resultFact[i][j] = resFact.getValueAt(i, j);
-            }
-        }
-        double[][] resultWant = {{0, 0, 0}, {0, 0, 0}, {0, 0, 0}};
-        assertTrue(Arrays.deepEquals(resultFact, resultWant));
+        IMatrix resultFact = matrixT.mul(matrixO);
+        double[][] arrayWant = {{0, 0, 0}, {0, 0, 0}, {0, 0, 0}};
+        Matrix matrixWant = new Matrix(arrayWant);
+        IMatrix resultWant = matrixWant;
+        assertEquals(resultFact, resultWant);
     }
 
     public void testMulMatrixThrowsException1() {
@@ -367,60 +326,45 @@ public class MatrixTestCase extends TestCase {
     public void testMulonNumMatrix1() {
         double[][] forTestMulonNumMatrix = {{-1, -2, -3, -1}, {-4, -5, -6, -3}, {-7, -8, -9, -5}};
         Matrix matrix = new Matrix(forTestMulonNumMatrix);
-        IMatrix resFact = matrix.mul(5);
-        double[][] resultFact = new double[resFact.getRows()][resFact.getColumns()];
-        for (int i = 0; i < resFact.getRows(); i++) {
-            for (int j = 0; j < resFact.getColumns(); j++) {
-                resultFact[i][j] = resFact.getValueAt(i, j);
-            }
-        }
-        double[][] resultWant = {{-5, -10, -15, -5}, {-20, -25, -30, -15}, {-35, -40, -45, -25}};
-        assertTrue(Arrays.deepEquals(resultFact, resultWant));
+        IMatrix resultFact = matrix.mul(5);
+        double[][] arrayWant = {{-5, -10, -15, -5}, {-20, -25, -30, -15}, {-35, -40, -45, -25}};
+        Matrix matrixWant = new Matrix(arrayWant);
+        IMatrix resultWant = matrixWant;
+        assertEquals(resultFact, resultWant);
     }
 
     public void testMulonNumMatrix2() {
         double[][] forTestMulonNumMatrix = {{-1, -2, -3, -1}, {-4, -5, -6, -3}, {-7, -8, -9, -5}};
         Matrix matrix = new Matrix(forTestMulonNumMatrix);
-        IMatrix resFact = matrix.mul(-5);
-        double[][] resultFact = new double[resFact.getRows()][resFact.getColumns()];
-        for (int i = 0; i < resFact.getRows(); i++) {
-            for (int j = 0; j < resFact.getColumns(); j++) {
-                resultFact[i][j] = resFact.getValueAt(i, j);
-            }
-        }
-        double[][] resultWant = {{5, 10, 15, 5}, {20, 25, 30, 15}, {35, 40, 45, 25}};
-        assertTrue(Arrays.deepEquals(resultFact, resultWant));
+        IMatrix resultFact = matrix.mul(-5);
+        double[][] arrayWant = {{5, 10, 15, 5}, {20, 25, 30, 15}, {35, 40, 45, 25}};
+        Matrix matrixWant = new Matrix(arrayWant);
+        IMatrix resultWant = matrixWant;
+        assertEquals(resultFact, resultWant);
     }
 
     public void testMulonNumMatrix3() {
         double[][] forTestMulonNumMatrix = {{1, 2, 3, 4}, {5, 6, 7, 9}, {11, 32, 11, 25}};
         Matrix matrix = new Matrix(forTestMulonNumMatrix);
-        IMatrix resFact = matrix.mul(0);
-        double[][] resultFact = new double[resFact.getRows()][resFact.getColumns()];
-        for (int i = 0; i < resFact.getRows(); i++) {
-            for (int j = 0; j < resFact.getColumns(); j++) {
-                resultFact[i][j] = resFact.getValueAt(i, j);
-            }
-        }
-        double[][] resultWant = {{0, 0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 0}};
-        assertTrue(Arrays.deepEquals(resultFact, resultWant));
+        IMatrix resultFact = matrix.mul(0);
+        double[][] arrayWant = {{0, 0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 0}};
+        Matrix matrixWant = new Matrix(arrayWant);
+        IMatrix resultWant = matrixWant;
+        assertEquals(resultFact, resultWant);
     }
 
-    public void testFillMatrix1() {
-        double[][] forTestFillMatrix = new double[2][2];
-        double[][] resultWant = {{2, 2}, {2, 2}};
-        Matrix factMatrix = new Matrix(forTestFillMatrix);
-        factMatrix.fillMatrix(2);
-        double[][] resultFact = new double[factMatrix.getRows()][factMatrix.getColumns()];
-        for (int i = 0; i < factMatrix.getRows(); i++) {
-            for (int j = 0; j < factMatrix.getColumns(); j++) {
-                resultFact[i][j] = factMatrix.getValueAt(i, j);
-            }
-        }
-        assertTrue(Arrays.deepEquals(resultFact, resultWant));
+    public void testFillMatrix() {
+        double[][] forTestFillMatrix = new double[3][3];
+        Matrix matrix = new Matrix(forTestFillMatrix);
+        matrix.fillMatrix(3);
+        IMatrix resultFact = matrix;
+        double[][] arrayWant = {{3, 3, 3}, {3, 3, 3}, {3, 3, 3}};
+        Matrix matrixWant = new Matrix(arrayWant);
+        IMatrix resultWant = matrixWant;
+        assertEquals(resultFact, resultWant);
     }
 
-    public void testFillMatrix12() {
+    public void testFillMatrixbyBycicle() {
         double[][] forTestFillMatrix = new double[3][3];
         double[][] resultWant = {{-4, -4, -4}, {-4, -4, -4}, {-4, -4, -4}};
         Matrix factMatrix = new Matrix(forTestFillMatrix);
@@ -434,22 +378,10 @@ public class MatrixTestCase extends TestCase {
         assertTrue(Arrays.deepEquals(resultFact, resultWant));
     }
 
-    @Test (expected = IndexOutOfBoundsException.class)
+    @Test(expected = IndexOutOfBoundsException.class)
     public void testSetValueAtThrowsException2() {
         double[][] forTestSetValueAt = new double[3][3];
         Matrix matrix = new Matrix(forTestSetValueAt);
-        double resultFact = matrix.setValueAt(4, 2, 4);
-    }
-
-    public void testAddMatrix4() {
-        double[][] forTestAddMatrixT = {{1, 2, 3, 1}, {4, 5, 6, 3}, {7, 8, 9, 5}};
-        double[][] forTestAddMatrixO = {{1, 2, 3, 3}, {4, 5, 6, 6}, {7, 8, 9, 9}};
-        Matrix matrixT = new Matrix(forTestAddMatrixT);
-        Matrix matrixO = new Matrix(forTestAddMatrixO);
-        IMatrix resultFact = matrixT.add(matrixO);
-        double[][] arrayWant = {{2, 4, 6, 4}, {8, 10, 12, 9}, {14, 16, 18, 14}};
-        Matrix matrixWant = new Matrix(arrayWant);
-        IMatrix resultWant = matrixWant;
-        assertEquals(resultFact, resultWant);
+        double resultFact = matrix.setValueAt(3, 2, 4);
     }
 }
