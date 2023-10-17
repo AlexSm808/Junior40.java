@@ -33,80 +33,108 @@ public class Matrix implements IMatrix {
 
     @Override
     public double getValueAt(int rowIndex, int colIndex) throws IndexOutOfBoundsException {
-        if (rowIndex < 0 || rowIndex > getRows() || colIndex < 0 || colIndex > getColumns()) {
-            throw new IndexOutOfBoundsException("Индекс строки не может быть меньше нуля или больше (или равно) количества строк матрицы или индекс столбца меньше нуля\n" +
-                    "или больше (или равно) количества столбцов матрицы");
+        try {
+            if (rowIndex < 0 || rowIndex >= getRows() || colIndex < 0 || colIndex >= getColumns()) {
+                throw new IndexOutOfBoundsException("Индекс выходит за размер текущей матрицы");
+            }
+            return nums[rowIndex][colIndex];
+        } catch (IndexOutOfBoundsException e) {
+            System.err.println("Ошибка при вызове метода getValueAt: " + e.getMessage());
+            return 0;
         }
-        return nums[rowIndex][colIndex];
     }
 
     @Override
-    public double setValueAt(int rowIndex, int colIndex, double value) throws IndexOutOfBoundsException {
-        if (rowIndex < 0 || rowIndex > getRows() || colIndex < 0 || colIndex > getColumns()) {
-            throw new IndexOutOfBoundsException(("Индекс строки не может быть меньше нуля или больше (или равно) количества строк матрицы или индекс столбца меньше нуля\n" +
-                    "или больше (или равно) количества столбцов матрицы"));
+    public void setValueAt(int rowIndex, int colIndex, double value) throws IndexOutOfBoundsException {
+        try {
+            if (rowIndex < 0 || rowIndex >= getRows() || colIndex < 0 || colIndex >= getColumns()) {
+                throw new IndexOutOfBoundsException("Индекс выходит за размер текущей матрицы");
+            }
+            nums[rowIndex][colIndex] = value;
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("Ошибка при вызове метода setValueAt: " + e.getMessage());
         }
-        nums[rowIndex][colIndex] = value;
-        return value;
     }
+
 
     @Override
     public IMatrix add(IMatrix otherMatrix) throws IllegalArgumentException, NullPointerException {
         // otherMatrix = b
         // this = a
-        if (this.getRows() != otherMatrix.getRows() || this.getColumns() != otherMatrix.getColumns()) {
-            throw new IllegalArgumentException("Текущая матрица и второй аргумент имеют несовместимое количество строк и (или) столбцов");
-        }
-        if (otherMatrix == null) {
-            throw new NullPointerException("Второй аргумент null!!!");
-        }
-        Matrix result = new Matrix(this.getRows(), this.getColumns());
-        for (int i = 0; i < result.getRows(); i++) {
-            for (int j = 0; j < result.getColumns(); j++) {
-                result.setValueAt(i, j, this.getValueAt(i, j) + otherMatrix.getValueAt(i, j));
+        try {
+            if (this.getRows() != otherMatrix.getRows() || this.getColumns() != otherMatrix.getColumns()) {
+                throw new IllegalArgumentException("Текущая матрица и второй аргумент имеют несовместимое количество строк и (или) столбцов");
             }
+            if (otherMatrix == null) {
+                throw new NullPointerException("Второй аргумент null!!!");
+            }
+            Matrix result = new Matrix(this.getRows(), this.getColumns());
+            for (int i = 0; i < result.getRows(); i++) {
+                for (int j = 0; j < result.getColumns(); j++) {
+                    result.setValueAt(i, j, this.getValueAt(i, j) + otherMatrix.getValueAt(i, j));
+                }
+            }
+            return result;
+        } catch (IllegalArgumentException e) {
+            System.out.println("Ошибка при вызове метода add (IllegalArgumentException): " + e.getMessage());
+        } catch (NullPointerException e) {
+            System.out.println("Ошибка при вызове метода add (NullPointerException) " + e.getMessage());
         }
-        return result;
+        return otherMatrix;
     }
 
     @Override
     public IMatrix sub(IMatrix otherMatrix) throws IllegalArgumentException, NullPointerException {
-        if (this.getRows() != otherMatrix.getRows() || this.getColumns() != otherMatrix.getColumns()) {
-            throw new IllegalArgumentException("Текущая матрица и второй аргумент имеют несовместимое количество строк и (или) столбцов");
-        }
-        if (otherMatrix == null) {
-            throw new NullPointerException("Второй аргумент null!!!");
-        }
-
-        Matrix result = new Matrix(this.getRows(), this.getColumns());
-        for (int i = 0; i < result.getRows(); i++) {
-            for (int j = 0; j < result.getColumns(); j++) {
-                result.setValueAt(i, j, this.getValueAt(i, j) - otherMatrix.getValueAt(i, j));
+        try {
+            if (this.getRows() != otherMatrix.getRows() || this.getColumns() != otherMatrix.getColumns()) {
+                throw new IllegalArgumentException("Текущая матрица и второй аргумент имеют несовместимое количество строк и (или) столбцов");
             }
+            if (otherMatrix == null) {
+                throw new NullPointerException("Второй аргумент null!!!");
+            }
+
+            Matrix result = new Matrix(this.getRows(), this.getColumns());
+            for (int i = 0; i < result.getRows(); i++) {
+                for (int j = 0; j < result.getColumns(); j++) {
+                    result.setValueAt(i, j, this.getValueAt(i, j) - otherMatrix.getValueAt(i, j));
+                }
+            }
+            return result;
+        } catch (IllegalArgumentException e) {
+            System.out.println("Ошибка при вызове метода sub (IllegalArgumentException): " + e.getMessage());
+        } catch (NullPointerException e) {
+            System.out.println("Ошибка при вызове метода sub (NullPointerException): " + e.getMessage());
         }
-        return result;
+        return otherMatrix;
     }
 
     @Override
     public IMatrix mul(IMatrix otherMatrix) throws IllegalArgumentException, NullPointerException {
-        if (this.getColumns() != otherMatrix.getRows()) {
-            throw new IllegalArgumentException("Текущая матрица и второй аргумент имеют несовместимое количество строк и (или) столбцов");
-        }
-        if (otherMatrix == null) {
-            throw new NullPointerException("Второй аргумент null!!!");
-        }
-        double sum = 0;
-        Matrix result = new Matrix(this.getRows(), otherMatrix.getColumns());
-        for (int i = 0; i < result.getRows(); i++) {
-            for (int j = 0; j < result.getColumns(); j++) {
-                for (int k = 0; k < this.getColumns(); k++) {
-                    sum += this.getValueAt(i, k) * otherMatrix.getValueAt(k, j);
-                }
-                result.setValueAt(i, j, sum);
-                sum = 0;
+        try {
+            if (this.getColumns() != otherMatrix.getRows()) {
+                throw new IllegalArgumentException("Текущая матрица и второй аргумент имеют несовместимое количество строк и (или) столбцов");
             }
+            if (otherMatrix == null) {
+                throw new NullPointerException("Второй аргумент null!!!");
+            }
+            double sum = 0;
+            Matrix result = new Matrix(this.getRows(), otherMatrix.getColumns());
+            for (int i = 0; i < result.getRows(); i++) {
+                for (int j = 0; j < result.getColumns(); j++) {
+                    for (int k = 0; k < this.getColumns(); k++) {
+                        sum += this.getValueAt(i, k) * otherMatrix.getValueAt(k, j);
+                    }
+                    result.setValueAt(i, j, sum);
+                    sum = 0;
+                }
+            }
+            return result;
+        } catch (IllegalArgumentException e) {
+            System.out.println("Ошибка при вызове метода mul (IllegalArgumentException): " + e.getMessage());
+        } catch (NullPointerException e) {
+            System.out.println("Ошибка при вызове метода mul (NullPointerException): " + e.getMessage());
         }
-        return result;
+        return otherMatrix;
     }
 
     @Override
