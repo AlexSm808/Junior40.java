@@ -18,6 +18,9 @@ public class Matrix implements IMatrix {
         }
     }
 
+    public Matrix() {
+    }
+
     @Override
     public int getRows() {
         return nums.length;
@@ -40,8 +43,8 @@ public class Matrix implements IMatrix {
     @Override
     public double setValueAt(int rowIndex, int colIndex, double value) throws IndexOutOfBoundsException {
         if (rowIndex < 0 || rowIndex > getRows() || colIndex < 0 || colIndex > getColumns()) {
-            throw new IndexOutOfBoundsException("Индекс строки не может быть меньше нуля или больше (или равно) количества строк матрицы или индекс столбца меньше нуля\n" +
-                    "или больше (или равно) количества столбцов матрицы");
+            throw new IndexOutOfBoundsException(("Индекс строки не может быть меньше нуля или больше (или равно) количества строк матрицы или индекс столбца меньше нуля\n" +
+                    "или больше (или равно) количества столбцов матрицы"));
         }
         nums[rowIndex][colIndex] = value;
         return value;
@@ -237,13 +240,15 @@ public class Matrix implements IMatrix {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+
         Matrix matrix = (Matrix) o;
-        return Arrays.equals(nums, matrix.nums);
+
+        return Arrays.deepEquals(nums, matrix.nums);
     }
 
     @Override
     public int hashCode() {
-        return Arrays.hashCode(nums);
+        return Arrays.deepHashCode(nums);
     }
 
     @Override
