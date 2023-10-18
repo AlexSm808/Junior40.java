@@ -32,7 +32,7 @@ public class Main2 {
                 System.out.println(Arrays.toString(nums));
 
         } catch (CustomException exception) {
-            System.out.println("Custom exception " + exception.getMessage()); //getMessage - сообщение, которое создается в классе (new Exception)
+            System.out.println("\nCustom exception " + exception.getMessage()); //getMessage - сообщение, которое создается в классе (new Exception)
         }
     }
 }

@@ -1,6 +1,7 @@
 package homeWork13;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -55,11 +56,14 @@ public class StringUtils2 implements StringUtils {
         while (matcher.find()) {
             decimalNumList.add(matcher.group());
         }
+        String[] strDecimalArray = decimalNumList.toArray(new String[0]);
+        double[] array = Arrays.stream(strDecimalArray).mapToDouble(Double::parseDouble).toArray();
 
-        double[] array = new double[decimalNumList.size()];  // есть более простое решение перенести лист в массив
-        for (int i = 0; i < decimalNumList.size(); i++) {
-            array[i] = Double.parseDouble(decimalNumList.get(i));
-        }
+
+                                                    // решение при помощи цикла
+//        for (int i = 0; i < decimalNumList.size(); i++) {
+//            array[i] = Double.parseDouble(decimalNumList.get(i));
+//        }
         if (decimalNumList.isEmpty()) {
             throw new CustomException("Not fou234.9nd");
         }
