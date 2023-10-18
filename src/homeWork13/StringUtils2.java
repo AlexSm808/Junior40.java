@@ -56,7 +56,7 @@ public class StringUtils2 implements StringUtils {
             decimalNumList.add(matcher.group());
         }
 
-        int d = decimalNumList.size();
+        int d = decimalNumList.size();                              // есть более простое решение перенести лист в массив
         double[] arr = new double[d];
         for (int i = 0; i < d; i++) {
             arr[i] = Double.parseDouble(decimalNumList.get(i));
