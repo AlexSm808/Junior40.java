@@ -39,27 +39,26 @@ public interface IMatrix {
 	double getValueAt(int rowIndex, int colIndex) throws IndexOutOfBoundsException;
 	
 	/**
-	 * Устанавливает элемент матрицы по индексам
-	 *
-	 * @param rowIndex индекс строки
-	 * @param colIndex индекс столбца
-	 * @param value    новое значение элемента
-	 * @return
-	 * @throws IndexOutOfBoundsException если индекс строки меньше нуля или больше (или равно) количества строк матрицы
-	 *                                   или индекс столбца меньше нуля или больше (или равно) количества столбцов матрицы
-	 */
-	double setValueAt(int rowIndex, int colIndex, double value) throws IndexOutOfBoundsException;
+     * Устанавливает элемент матрицы по индексам
+     *
+     * @param rowIndex индекс строки
+     * @param colIndex индекс столбца
+     * @param value    новое значение элемента
+     * @throws IndexOutOfBoundsException если индекс строки меньше нуля или больше (или равно) количества строк матрицы
+     *                                   или индекс столбца меньше нуля или больше (или равно) количества столбцов матрицы
+     */
+	void setValueAt(int rowIndex, int colIndex, double value) throws IndexOutOfBoundsException;
 	
 	/**
-	 * Возвращает сумму текущей матрицы и второго аргумента. <br/>
-	 * <b><i>(После выполнения функции текущая матрица не должна быть изменена! Результат операции - новый объект матрицы) </i></b>
-	 * 
-	 * @param otherMatrix второй аргумент (матрица)
-	 * @return сумма матриц <b><i>(новый объект матрицы)</i></b>
-	 * @throws IllegalArgumentException если текущая матрица и второй аргумент имеют несовместимое количество строк и (или) столбцов
-	 * @throws NullPointerException если второй аргумент null
-	 */
-	IMatrix add(IMatrix otherMatrix) throws IllegalArgumentException, NullPointerException;
+     * Возвращает сумму текущей матрицы и второго аргумента. <br/>
+     * <b><i>(После выполнения функции текущая матрица не должна быть изменена! Результат операции - новый объект матрицы) </i></b>
+     *
+     * @param otherMatrix второй аргумент (матрица)
+     * @return сумма матриц <b><i>(новый объект матрицы)</i></b>
+     * @throws IllegalArgumentException если текущая матрица и второй аргумент имеют несовместимое количество строк и (или) столбцов
+     * @throws NullPointerException     если второй аргумент null
+     */
+	Object add(IMatrix otherMatrix) throws IllegalArgumentException, NullPointerException;
 	
 	/**
 	 * Возвращает разность текущей матрицы и второго аргумента.<br/>
