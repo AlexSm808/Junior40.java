@@ -56,15 +56,14 @@ public class StringUtils2 implements StringUtils {
             decimalNumList.add(matcher.group());
         }
 
-        int d = decimalNumList.size();                              // есть более простое решение перенести лист в массив
-        double[] arr = new double[d];
-        for (int i = 0; i < d; i++) {
-            arr[i] = Double.parseDouble(decimalNumList.get(i));
+        double[] array = new double[decimalNumList.size()];  // есть более простое решение перенести лист в массив
+        for (int i = 0; i < decimalNumList.size(); i++) {
+            array[i] = Double.parseDouble(decimalNumList.get(i));
         }
         if (decimalNumList.isEmpty()) {
-            throw new CustomException("Чисел не обнаружено");
+            throw new CustomException("Not fou234.9nd");
         }
-        return arr;
+        return array;
 
     }
 
