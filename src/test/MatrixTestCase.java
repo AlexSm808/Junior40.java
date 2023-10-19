@@ -141,8 +141,7 @@ public class MatrixTestCase extends TestCase {
         Matrix matrixO = new Matrix(forTestAddMatrixO);
         IMatrix resultFact = matrixT.add(matrixO);
         double[][] arrayWant = {{2, 4, 6, 4}, {8, 10, 12, 9}, {14, 16, 18, 14}};
-        Matrix matrixWant = new Matrix(arrayWant);
-        IMatrix resultWant = matrixWant;
+        IMatrix resultWant = new Matrix(arrayWant);;
         assertEquals(resultFact, resultWant);
     }
 
@@ -153,7 +152,7 @@ public class MatrixTestCase extends TestCase {
         Matrix matrixO = new Matrix(forTestAddMatrixO);
         IMatrix resultFact = matrixT.add(matrixO);
         double[][] arrayWant = {{-2, -4, -6, -4}, {-8, -10, -12, -9}, {-14, -16, -18, -14}};
-        IMatrix resultWant = new Matrix(arrayWant); // лишняя строчка
+        IMatrix resultWant = new Matrix(arrayWant);
         assertEquals(resultFact, resultWant);
     }
 
@@ -164,8 +163,7 @@ public class MatrixTestCase extends TestCase {
         Matrix matrixO = new Matrix(forTestAddMatrixO);
         IMatrix resultFact = matrixT.add(matrixO);
         double[][] arrayWant = {{0, 0, 0, 0, 0}, {0, 0, 0, 0, 0}, {0, 0, 0, 0, 0}, {0, 0, 0, 0, 0}, {0, 0, 0, 0, 0}};
-        Matrix matrixWant = new Matrix(arrayWant);
-        IMatrix resultWant = matrixWant;  // лишняя строчка
+        IMatrix resultWant = new Matrix(arrayWant);;
         assertEquals(resultFact, resultWant);
     }
 
@@ -225,8 +223,7 @@ public class MatrixTestCase extends TestCase {
         Matrix matrixO = new Matrix(forTestSubMatrixO);
         IMatrix resultFact = matrixT.sub(matrixO);
         double[][] arrayWant = {{0, 0, 0, -2}, {0, 0, 0, -3}, {0, 0, 0, -4}};
-        Matrix matrixWant = new Matrix(arrayWant);
-        IMatrix resultWant = matrixWant;
+        IMatrix resultWant = new Matrix(arrayWant);
         assertEquals(resultFact, resultWant);
 
     }
@@ -238,8 +235,7 @@ public class MatrixTestCase extends TestCase {
         Matrix matrixO = new Matrix(forTestSubMatrixO);
         IMatrix resultFact = matrixT.sub(matrixO);
         double[][] arrayWant = {{0, 0, 0, 2}, {0, 0, 0, 3}, {0, 0, 0, 4}};
-        Matrix matrixWant = new Matrix(arrayWant);
-        IMatrix resultWant = matrixWant;
+        IMatrix resultWant = new Matrix(arrayWant);
         assertEquals(resultFact, resultWant);
     }
 
@@ -250,8 +246,7 @@ public class MatrixTestCase extends TestCase {
         Matrix matrixO = new Matrix(forTestSubMatrixO);
         IMatrix resultFact = matrixT.sub(matrixO);
         double[][] arrayWant = {{0, 0, 0}, {0, 0, 0}, {0, 0, 0}};
-        Matrix matrixWant = new Matrix(arrayWant);
-        IMatrix resultWant = matrixWant;
+        IMatrix resultWant = new Matrix(arrayWant);
         assertEquals(resultFact, resultWant);
     }
 
@@ -309,8 +304,7 @@ public class MatrixTestCase extends TestCase {
         Matrix matrixO = new Matrix(forTestMulMatrixO);
         IMatrix resultFact = matrixT.mul(matrixO);
         double[][] arrayWant = {{34, 41, 49}, {78, 96, 117}, {122, 151, 185}};
-        Matrix matrixWant = new Matrix(arrayWant);
-        IMatrix resultWant = matrixWant;  // лишняя строка
+        IMatrix resultWant = new Matrix(arrayWant);
         assertEquals(resultFact, resultWant);
     }
 
@@ -321,8 +315,7 @@ public class MatrixTestCase extends TestCase {
         Matrix matrixO = new Matrix(forTestMulMatrixO);
         IMatrix resultFact = matrixT.mul(matrixO);
         double[][] arrayWant = {{34, 41, 49}, {78, 96, 117}, {122, 151, 185}};
-        Matrix matrixWant = new Matrix(arrayWant);
-        IMatrix resultWant = matrixWant;
+        IMatrix resultWant = new Matrix(arrayWant);
         assertEquals(resultFact, resultWant);
     }
 
@@ -333,8 +326,7 @@ public class MatrixTestCase extends TestCase {
         Matrix matrixO = new Matrix(forTestMulMatrixO);
         IMatrix resultFact = matrixT.mul(matrixO);
         double[][] arrayWant = {{0, 0, 0}, {0, 0, 0}, {0, 0, 0}};
-        Matrix matrixWant = new Matrix(arrayWant);
-        IMatrix resultWant = matrixWant;
+        IMatrix resultWant = new Matrix(arrayWant);
         assertEquals(resultFact, resultWant);
     }
 
@@ -345,8 +337,7 @@ public class MatrixTestCase extends TestCase {
         Matrix matrixO = new Matrix(forTestMulMatrixO);
         IMatrix resultFact = matrixT.mul(matrixO);
         double[][] arrayWant = {{0, 0, 0}, {0, 0, 0}, {0, 0, 0}};
-        Matrix matrixWant = new Matrix(arrayWant);
-        IMatrix resultWant = matrixWant;
+        IMatrix resultWant = new Matrix(arrayWant);
         assertEquals(resultFact, resultWant);
     }
 
@@ -401,8 +392,7 @@ public class MatrixTestCase extends TestCase {
         Matrix matrix = new Matrix(forTestMulonNumMatrix);
         IMatrix resultFact = matrix.mul(5);
         double[][] arrayWant = {{-5, -10, -15, -5}, {-20, -25, -30, -15}, {-35, -40, -45, -25}};
-        Matrix matrixWant = new Matrix(arrayWant);
-        IMatrix resultWant = matrixWant;
+        IMatrix resultWant = new Matrix(arrayWant);
         assertEquals(resultFact, resultWant);
     }
 
@@ -411,8 +401,7 @@ public class MatrixTestCase extends TestCase {
         Matrix matrix = new Matrix(forTestMulonNumMatrix);
         IMatrix resultFact = matrix.mul(-5);
         double[][] arrayWant = {{5, 10, 15, 5}, {20, 25, 30, 15}, {35, 40, 45, 25}};
-        Matrix matrixWant = new Matrix(arrayWant);
-        IMatrix resultWant = matrixWant;
+        IMatrix resultWant = new Matrix(arrayWant);
         assertEquals(resultFact, resultWant);
     }
 
@@ -421,8 +410,7 @@ public class MatrixTestCase extends TestCase {
         Matrix matrix = new Matrix(forTestMulonNumMatrix);
         IMatrix resultFact = matrix.mul(0);
         double[][] arrayWant = {{0, 0, 0, 0}, {0, 0, 0, 0}, {0, 0, 0, 0}};
-        Matrix matrixWant = new Matrix(arrayWant);
-        IMatrix resultWant = matrixWant;
+        IMatrix resultWant = new Matrix(arrayWant);
         assertEquals(resultFact, resultWant);
     }
 
@@ -432,8 +420,7 @@ public class MatrixTestCase extends TestCase {
         matrix.fillMatrix(3);
         IMatrix resultFact = matrix;
         double[][] arrayWant = {{3, 3, 3}, {3, 3, 3}, {3, 3, 3}};
-        Matrix matrixWant = new Matrix(arrayWant);
-        IMatrix resultWant = matrixWant;
+        IMatrix resultWant = new Matrix(arrayWant);
         assertEquals(resultFact, resultWant);
     }
 
